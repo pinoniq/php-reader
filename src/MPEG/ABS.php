@@ -59,7 +59,6 @@ require_once("MPEG/ABS/Frame.php");
  * @copyright  Copyright (c) 2008 The PHP Reader Project Workgroup
  * @license    http://code.google.com/p/php-reader/wiki/License New BSD License
  * @version    $Rev: 1 $
- * @todo       Implement validation routines
  */
 final class MPEG_ABS extends MPEG_ABS_Object
 {
@@ -357,7 +356,8 @@ final class MPEG_ABS extends MPEG_ABS_Object
    */
   public function getFrames()
   {
-    if ($this->getOption("readmode", "lazy") == "lazy") {
+    if ($this->getOption("readmode", "lazy") == "lazy" &&
+        $this->_frames === false) {
       $this->_readFrames();
     }
     return $this->_frames;
@@ -376,7 +376,6 @@ final class MPEG_ABS extends MPEG_ABS_Object
       $this->_reader->setOffset($this->_lastFrameOffset);
     
     for ($i = 0; $this->_reader->getOffset() < $this->_bytes; $i++) {
-      $options = $this->getOptions();
       $frame = new MPEG_ABS_Frame($this->_reader, $options);
       
       $this->_cumulativePlayDuration += 
@@ -384,8 +383,6 @@ final class MPEG_ABS extends MPEG_ABS_Object
       $this->_cumulativeBitrate += $frame->getBitrate();
       $this->_frames[] = $frame;
       
-      if ($limit === false)
-        $this->_lastFrameOffset = $this->_reader->getOffset();
       if ($limit !== false && ($i + 1) == $limit) {
         $this->_lastFrameOffset = $this->_reader->getOffset();
         break;
