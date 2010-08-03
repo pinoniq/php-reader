@@ -73,8 +73,7 @@ final class Zend_Media_Id3_Frame_Ufid extends Zend_Media_Id3_Frame
         }
 
         list($this->_owner, $this->_fileIdentifier) =
-            $this->_explodeString8
-                ($this->_reader->read($this->_reader->getSize()), 2);
+            $this->_explodeString8($this->_data, 2);
     }
 
     /**

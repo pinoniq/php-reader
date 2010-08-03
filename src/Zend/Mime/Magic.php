@@ -14,7 +14,6 @@
  *
  * @category   Zend
  * @package    Zend_Mime
- * @subpackage Magic
  * @copyright  Copyright (c) 2005-2009 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
@@ -57,7 +56,6 @@ require_once 'Zend/Io/FileReader.php';
  *
  * @category   Zend
  * @package    Zend_Mime
- * @subpackage Magic
  * @author     Sven Vollbehr <sven@vollbehr.eu>
  * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
